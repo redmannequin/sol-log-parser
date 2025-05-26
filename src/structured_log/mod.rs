@@ -21,7 +21,7 @@ pub struct ComputeUnits {
     pub budget: u64,
 }
 
-impl<'a> From<RawCuLog<'a>> for ComputeUnits {
+impl From<RawCuLog<'_>> for ComputeUnits {
     fn from(value: RawCuLog) -> Self {
         ComputeUnits {
             consumed: value.consumed,
@@ -78,6 +78,7 @@ where
     Program: Log<RawLog = RawLog>,
     Data: Log<RawLog = RawLog>,
 {
+    #[allow(clippy::type_complexity)]
     pub fn from_logs<Invoke, Success, Failed, Return, Compute, Other>(
         logs: Vec<Log2<Invoke, Success, Failed, Program, Data, Return, Compute, Other>>,
     ) -> Result<Vec<Self>>
@@ -313,8 +314,8 @@ where
 {
     fn new(program_id: Id, depth: u8, raw: RawLog) -> Self {
         Self {
-            program_id: program_id,
-            depth: depth,
+            program_id,
+            depth,
             program_logs: vec![],
             data_logs: vec![],
             return_data: None,

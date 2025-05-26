@@ -21,13 +21,16 @@ pub fn quick_pubkey_check(pubkey: &str) -> bool {
     let len = bytes.len();
 
     // Check if the length is within the valid range
+    #[allow(clippy::manual_range_contains)]
     if len < MIN_CHARS || len > MAX_CHARS {
         return false;
     }
 
     // Check characters are valid base58 characters
-    bytes.iter().all(|b| match b {
-        b'1'..=b'9' | b'A'..=b'H' | b'J'..=b'N' | b'P'..=b'Z' | b'a'..=b'k' | b'm'..=b'z' => true,
-        _ => false,
+    bytes.iter().all(|b| {
+        matches!(
+            b,
+            b'1'..=b'9' | b'A'..=b'H' | b'J'..=b'N' | b'P'..=b'Z' | b'a'..=b'k' | b'm'..=b'z'
+        )
     })
 }

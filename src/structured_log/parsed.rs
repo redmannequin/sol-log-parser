@@ -48,7 +48,7 @@ mod helper_code {
 
     use super::{ParsedProgramResult, ParsedStructuredLog};
 
-    impl<'a> From<ParsedStructuredLogHelper> for ParsedStructuredLog {
+    impl From<ParsedStructuredLogHelper> for ParsedStructuredLog {
         fn from(value: ParsedStructuredLogHelper) -> Self {
             Self {
                 program_id: value.program_id,
