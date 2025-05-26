@@ -2,6 +2,12 @@
 name = "sol-log-parser"
 version = "0.0.1"
 edition = "2021"
+license = "MIT"
+description = """
+A quick and dirty solana log parser that turns runtime logs into structured data.
+"""
+exclude = [".github"]
+repository = "https://github.com/redmannequin/sol-log-parser"
 
 [dependencies]
 base64 = "0.22"
